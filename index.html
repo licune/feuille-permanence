@@ -154,6 +154,7 @@
     table.form-table {
       width: 100%;
       border-collapse: collapse;
+      table-layout: fixed;
     }
 
     table.form-table td {
@@ -241,12 +242,40 @@
 
     /* PRINT */
     @media print {
-      body { background: #fff; padding: 0; }
+      @page {
+        size: A4 portrait;
+        margin: 10mm;
+      }
+      html, body {
+        width: 210mm;
+        height: 297mm;
+        margin: 0;
+        padding: 0;
+        background: #fff;
+      }
+      body { padding: 0; background: #fff; }
       .actions { display: none; }
-      .page { border: none; max-width: 100%; }
-      textarea.cell { background: #fff !important; }
+      .page {
+        max-width: 100%;
+        width: 100%;
+        height: 277mm;
+        border: 2px solid #222;
+        display: flex;
+        flex-direction: column;
+        page-break-inside: avoid;
+      }
+      .form-table { flex: 1; }
+      .form-table tr { height: auto; }
+      textarea.cell {
+        background: #fff !important;
+        min-height: 0;
+        height: 100%;
+      }
       textarea.cell::placeholder { color: transparent; }
       input::placeholder { color: transparent; }
+      .slogan { font-size: 18px; padding: 8px 10px; }
+      .bonjour { padding: 5px 16px; }
+      .names-section { padding: 6px 16px; gap: 3px; }
     }
 
     /* MOBILE */
