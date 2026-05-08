@@ -6,302 +6,71 @@
   <title>Fiche Permanent — Carrefour</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: #f4f4f4;
-      min-height: 100vh;
-      padding: 16px;
-      color: #111;
-    }
-
-    .page {
-      max-width: 700px;
-      margin: 0 auto;
-      background: #fff;
-      border: 2px solid #222;
-    }
-
-    /* HEADER */
-    .header-top {
-      background: #111;
-      color: #fff;
-      text-align: center;
-      font-weight: 700;
-      font-size: 13px;
-      padding: 7px 10px;
-      letter-spacing: 0.5px;
-    }
-
-    .header-sub {
-      background: #555;
-      color: #fff;
-      text-align: center;
-      font-size: 12px;
-      padding: 4px;
-      letter-spacing: 1px;
-    }
-
-    .header-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 16px;
-      border-bottom: 1px solid #ddd;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .date-block {
-      font-size: 13px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    #date-display {
-      font-weight: 700;
-      font-size: 14px;
-      color: #005BBB;
-    }
-
-    .logo {
-      font-size: 22px;
-      font-weight: 900;
-      color: #005BBB;
-      letter-spacing: -1px;
-    }
-
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f4f4; min-height: 100vh; padding: 16px; color: #111; }
+    .page { max-width: 700px; margin: 0 auto; background: #fff; border: 2px solid #222; }
+    .header-top { background: #111; color: #fff; text-align: center; font-weight: 700; font-size: 13px; padding: 7px 10px; letter-spacing: 0.5px; }
+    .header-sub { background: #555; color: #fff; text-align: center; font-size: 12px; padding: 4px; letter-spacing: 1px; }
+    .header-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid #ddd; flex-wrap: wrap; gap: 8px; }
+    .date-block { font-size: 13px; display: flex; align-items: center; gap: 6px; }
+    #date-display { font-weight: 700; font-size: 14px; color: #005BBB; }
+    .logo { font-size: 22px; font-weight: 900; color: #005BBB; letter-spacing: -1px; }
     .logo span { color: #e63b2e; }
-
-    .bonjour {
-      padding: 8px 16px;
-      font-size: 16px;
-      font-weight: 600;
-      border-bottom: 1px solid #eee;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    /* NOMS */
-    .names-section {
-      padding: 10px 16px;
-      border-bottom: 2px solid #222;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .name-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .name-row label {
-      font-size: 12px;
-      font-weight: 600;
-      text-decoration: underline;
-      min-width: 210px;
-    }
-
-    .name-row input {
-      flex: 1;
-      min-width: 160px;
-      border: none;
-      border-bottom: 1.5px solid #888;
-      padding: 3px 6px;
-      font-size: 13px;
-      outline: none;
-      background: transparent;
-      color: #111;
-    }
-
-    .name-row input:focus {
-      border-bottom: 2px solid #005BBB;
-    }
-
-    /* SLOGAN */
-    .slogan {
-      text-align: center;
-      font-size: 22px;
-      font-weight: 900;
-      padding: 14px 10px;
-      border-bottom: 2px solid #222;
-      letter-spacing: 0.3px;
-    }
-
-    /* TABLE */
-    .section-title {
-      background: #111;
-      color: #fff;
-      font-weight: 700;
-      font-size: 12px;
-      padding: 6px 12px;
-      letter-spacing: 0.5px;
-    }
-
-    .section-info {
-      font-size: 11px;
-      padding: 4px 12px;
-      color: #444;
-      border-bottom: 1px solid #ccc;
-      font-style: italic;
-    }
-
-    table.form-table {
-      width: 100%;
-      border-collapse: collapse;
-      table-layout: fixed;
-    }
-
-    table.form-table td {
-      border: 1px solid #bbb;
-      vertical-align: top;
-    }
-
-    td.row-label {
-      font-size: 12px;
-      font-weight: 700;
-      width: 120px;
-      padding: 6px 8px;
-      background: #f7f7f7;
-      color: #111;
-    }
-
-    td.row-cell {
-      padding: 2px;
-    }
-
-    textarea.cell {
-      width: 100%;
-      min-height: 58px;
-      border: none;
-      resize: vertical;
-      font-size: 13px;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      padding: 6px 8px;
-      outline: none;
-      background: #fff;
-      color: #111;
-    }
-
-    textarea.cell:focus {
-      background: #eef5ff;
-    }
-
-    /* ACTIONS */
-    .actions {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 16px;
-      border-top: 2px solid #222;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .last-save {
-      font-size: 11px;
-      color: #888;
-    }
-
-    .btn {
-      padding: 9px 22px;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      border: 2px solid #222;
-      border-radius: 4px;
-      background: #fff;
-      color: #111;
-      transition: background 0.15s;
-    }
-
+    .bonjour { padding: 8px 16px; font-size: 16px; font-weight: 600; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 6px; }
+    .names-section { padding: 10px 16px; border-bottom: 2px solid #222; display: flex; flex-direction: column; gap: 6px; }
+    .name-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .name-row label { font-size: 12px; font-weight: 600; text-decoration: underline; min-width: 210px; }
+    .name-row input { flex: 1; min-width: 160px; border: none; border-bottom: 1.5px solid #888; padding: 3px 6px; font-size: 13px; outline: none; background: transparent; color: #111; }
+    .name-row input:focus { border-bottom: 2px solid #005BBB; }
+    .slogan { text-align: center; font-size: 22px; font-weight: 900; padding: 14px 10px; border-bottom: 2px solid #222; letter-spacing: 0.3px; }
+    .section-title { background: #111; color: #fff; font-weight: 700; font-size: 12px; padding: 6px 12px; letter-spacing: 0.5px; }
+    .section-info { font-size: 11px; padding: 4px 12px; color: #444; border-bottom: 1px solid #ccc; font-style: italic; }
+    table.form-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+    table.form-table td { border: 1px solid #bbb; vertical-align: top; }
+    td.row-label { font-size: 12px; font-weight: 700; width: 120px; padding: 6px 8px; background: #f7f7f7; color: #111; }
+    td.row-cell { padding: 2px; }
+    textarea.cell { width: 100%; min-height: 58px; border: none; resize: vertical; font-size: 13px; font-family: 'Segoe UI', Arial, sans-serif; padding: 6px 8px; outline: none; background: #fff; color: #111; }
+    textarea.cell:focus { background: #eef5ff; }
+    .actions { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-top: 2px solid #222; gap: 10px; flex-wrap: wrap; }
+    .last-save { font-size: 11px; color: #888; }
+    .btn { padding: 9px 22px; font-size: 13px; font-weight: 600; cursor: pointer; border: 2px solid #222; border-radius: 4px; background: #fff; color: #111; transition: background 0.15s; }
     .btn:hover { background: #f0f0f0; }
-
-    .btn-primary {
-      background: #005BBB;
-      color: #fff;
-      border-color: #005BBB;
-    }
-
+    .btn-primary { background: #005BBB; color: #fff; border-color: #005BBB; }
     .btn-primary:hover { background: #004a99; }
-
-    .save-indicator {
-      font-size: 11px;
-      color: #2a8a2a;
-      font-weight: 600;
-      opacity: 0;
-      transition: opacity 0.4s;
-    }
-
+    .save-indicator { font-size: 11px; color: #2a8a2a; font-weight: 600; opacity: 0; transition: opacity 0.4s; }
     .save-indicator.show { opacity: 1; }
-
-    /* PRINT */
     @media print {
-      @page {
-        size: A4 portrait;
-        margin: 10mm;
-      }
-      html, body {
-        width: 210mm;
-        height: 297mm;
-        margin: 0;
-        padding: 0;
-        background: #fff;
-      }
-      body { padding: 0; background: #fff; }
-      .actions { display: none; }
-      .page {
-        max-width: 100%;
-        width: 100%;
-        height: 277mm;
-        border: 2px solid #222;
-        display: flex;
-        flex-direction: column;
-        page-break-inside: avoid;
-      }
-      .form-table { flex: 1; }
-      .form-table tr { height: auto; }
-      textarea.cell {
-        background: #fff !important;
-        min-height: 0;
-        height: 100%;
-      }
-      textarea.cell::placeholder { color: transparent; }
-      input::placeholder { color: transparent; }
-      .slogan { font-size: 18px; padding: 8px 10px; }
-      .bonjour { padding: 5px 16px; }
-      .names-section { padding: 6px 16px; gap: 3px; }
+      @page { size: A4 portrait; margin: 10mm; }
+      html, body { margin: 0; padding: 0; background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      body { padding: 0; }
+      .actions { display: none !important; }
+      .page { max-width: 100%; width: 100%; height: 277mm; border: 2px solid #111 !important; outline: 2px solid #111; display: flex; flex-direction: column; overflow: hidden; }
+      .header-top, .header-sub, td.row-label { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .slogan { font-size: 17px; padding: 6px 10px; }
+      .bonjour { padding: 4px 16px; font-size: 14px; }
+      .names-section { padding: 5px 16px; gap: 2px; }
+      .section-title { padding: 4px 12px; font-size: 11px; }
+      .section-info { padding: 2px 12px; font-size: 10px; }
+      .form-table { flex: 1; height: 100%; }
+      .form-table tbody { height: 100%; }
+      .form-table tr { height: calc(100% / 7); }
+      td.row-label { font-size: 11px; padding: 4px 6px; width: 110px; }
+      td.row-cell { padding: 0; height: 100%; }
+      textarea.cell { background: #fff !important; min-height: 0 !important; height: 100% !important; width: 100% !important; resize: none !important; font-size: 12px; display: block; }
+      textarea.cell::placeholder { color: transparent !important; }
+      input::placeholder { color: transparent !important; }
     }
-
-    /* MOBILE */
-    @media (max-width: 480px) {
-      .slogan { font-size: 16px; }
-      .logo { font-size: 18px; }
-      .name-row label { min-width: unset; width: 100%; }
-    }
+    @media (max-width: 480px) { .slogan { font-size: 16px; } .logo { font-size: 18px; } .name-row label { min-width: unset; width: 100%; } }
   </style>
 </head>
 <body>
-
 <div class="page" id="main-form">
-
   <div class="header-top">LE PERMANENT EST GARANT DU BON FONCTIONNEMENT DU SECTEUR</div>
   <div class="header-sub">LES RESPONSABILITÉS DU PERMANENT</div>
-
   <div class="header-row">
-    <div class="date-block">
-      Journée du &nbsp;<span id="date-display"></span>
-    </div>
+    <div class="date-block">Journée du &nbsp;<span id="date-display"></span></div>
     <div class="logo">Carre<span>four</span></div>
   </div>
-
   <div class="bonjour">👋 Bonne journée !</div>
-
   <div class="names-section">
     <div class="name-row">
       <label>Nom du permanent ED :</label>
@@ -316,12 +85,9 @@
       <input type="text" id="nom_ali" placeholder="Prénom Nom..." autocomplete="off" />
     </div>
   </div>
-
   <div class="slogan">Pour nos clients SOYONS EXIGEANTS</div>
-
   <div class="section-title">ÉVÉNEMENTS PARTICULIERS — INFOS POUR L'ÉQUIPE DE DIRECTION</div>
   <div class="section-info">(météo, manifs, ruptures, allée centrale / acte spot, pain / PF / poisson…)</div>
-
   <table class="form-table">
     <tr>
       <td class="row-label">Évènements</td>
@@ -359,7 +125,6 @@
       <td class="row-cell"><textarea class="cell" id="f_autres2" placeholder="Saisir ici..."></textarea></td>
     </tr>
   </table>
-
   <div class="actions">
     <span class="last-save" id="last-save">—</span>
     <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
@@ -368,13 +133,10 @@
       <button class="btn btn-primary" onclick="window.print()">🖨 Imprimer</button>
     </div>
   </div>
-
 </div>
-
 <script>
   const TODAY_KEY = 'perm_date';
   const DATA_KEY  = 'perm_data';
-
   const FIELDS = [
     'nom_ed','nom_na','nom_ali',
     'f_evenements','f_evenements2',
@@ -385,47 +147,30 @@
     'f_na','f_na2',
     'f_autres','f_autres2'
   ];
-
-  function todayStr() {
-    return new Date().toISOString().slice(0,10);
-  }
-
+  function todayStr() { return new Date().toISOString().slice(0,10); }
   function displayDate() {
-    const opts = { weekday:'long', day:'2-digit', month:'long', year:'numeric' };
     document.getElementById('date-display').textContent =
-      new Date().toLocaleDateString('fr-FR', opts);
+      new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'2-digit',month:'long',year:'numeric'});
   }
-
   function checkReset() {
-    const saved = localStorage.getItem(TODAY_KEY);
-    if (saved !== todayStr()) {
+    if (localStorage.getItem(TODAY_KEY) !== todayStr()) {
       localStorage.removeItem(DATA_KEY);
       localStorage.setItem(TODAY_KEY, todayStr());
     }
   }
-
   function loadData() {
     const raw = localStorage.getItem(DATA_KEY);
     if (!raw) return;
     try {
       const data = JSON.parse(raw);
-      FIELDS.forEach(id => {
-        const el = document.getElementById(id);
-        if (el && data[id] !== undefined) el.value = data[id];
-      });
-      if (data._saved) {
-        document.getElementById('last-save').textContent = 'Dernière sauvegarde : ' + data._saved;
-      }
+      FIELDS.forEach(id => { const el = document.getElementById(id); if(el && data[id]!==undefined) el.value = data[id]; });
+      if (data._saved) document.getElementById('last-save').textContent = 'Dernière sauvegarde : ' + data._saved;
     } catch(e) {}
   }
-
   function saveData() {
     const data = {};
-    FIELDS.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) data[id] = el.value;
-    });
-    const now = new Date().toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'});
+    FIELDS.forEach(id => { const el = document.getElementById(id); if(el) data[id] = el.value; });
+    const now = new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
     data._saved = now;
     localStorage.setItem(DATA_KEY, JSON.stringify(data));
     document.getElementById('last-save').textContent = 'Dernière sauvegarde : ' + now;
@@ -433,61 +178,37 @@
     ind.classList.add('show');
     setTimeout(() => ind.classList.remove('show'), 2000);
   }
-
   function resetForm() {
     const btn = document.getElementById('btn-reset');
     if (btn.dataset.confirm !== '1') {
-      btn.textContent = '❓ Confirmer la remise à zéro ?';
-      btn.style.borderColor = '#c00';
-      btn.style.color = '#c00';
+      btn.textContent = '❓ Confirmer ?';
+      btn.style.borderColor = '#c00'; btn.style.color = '#c00';
       btn.dataset.confirm = '1';
       setTimeout(() => {
         btn.textContent = '🗑 Remettre à zéro';
-        btn.style.borderColor = '';
-        btn.style.color = '';
+        btn.style.borderColor = ''; btn.style.color = '';
         btn.dataset.confirm = '0';
       }, 3000);
       return;
     }
-    FIELDS.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.value = '';
-    });
+    FIELDS.forEach(id => { const el = document.getElementById(id); if(el) el.value = ''; });
     localStorage.removeItem(DATA_KEY);
     document.getElementById('last-save').textContent = '—';
     btn.textContent = '🗑 Remettre à zéro';
-    btn.style.borderColor = '';
-    btn.style.color = '';
+    btn.style.borderColor = ''; btn.style.color = '';
     btn.dataset.confirm = '0';
   }
-
-  /* Auto-save à chaque modification */
   let saveTimer;
   FIELDS.forEach(id => {
     const el = document.getElementById(id);
-    if (el) {
-      el.addEventListener('input', () => {
-        clearTimeout(saveTimer);
-        saveTimer = setTimeout(saveData, 800);
-      });
-    }
+    if (el) el.addEventListener('input', () => { clearTimeout(saveTimer); saveTimer = setTimeout(saveData, 800); });
   });
-
-  /* Reset programmé à 23h59 chaque jour */
   function scheduleNightReset() {
-    const now = new Date();
-    const reset = new Date();
-    reset.setHours(23, 59, 0, 0);
-    if (now >= reset) reset.setDate(reset.getDate() + 1);
-    const delay = reset - now;
-    setTimeout(() => {
-      localStorage.removeItem(DATA_KEY);
-      localStorage.setItem(TODAY_KEY, todayStr());
-      location.reload();
-    }, delay);
+    const now = new Date(), r = new Date();
+    r.setHours(23,59,0,0);
+    if (now >= r) r.setDate(r.getDate()+1);
+    setTimeout(() => { localStorage.removeItem(DATA_KEY); localStorage.setItem(TODAY_KEY, todayStr()); location.reload(); }, r - now);
   }
-
-  /* Init */
   displayDate();
   checkReset();
   loadData();
