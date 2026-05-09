@@ -28,7 +28,7 @@
     table.form-table td { border: 1px solid #bbb; vertical-align: top; }
     td.row-label { font-size: 12px; font-weight: 700; width: 120px; padding: 6px 8px; background: #f7f7f7; color: #111; }
     td.row-cell { padding: 2px; }
-    textarea.cell { width: 100%; min-height: 58px; border: none; resize: vertical; font-size: 15px; font-family: 'Segoe UI', Arial, sans-serif; padding: 6px 8px; outline: none; background: #fff; color: #111; }
+    textarea.cell { width: 100%; min-height: 58px; border: none; resize: vertical; font-size: 20px; font-family: 'Segoe UI', Arial, sans-serif; padding: 6px 8px; outline: none; background: #fff; color: #111; }
     textarea.cell:focus { background: #eef5ff; }
     .actions { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-top: 2px solid #222; gap: 10px; flex-wrap: wrap; }
     .last-save { font-size: 11px; color: #888; }
@@ -42,6 +42,7 @@
       @page {
         size: A4 portrait;
         margin: 10mm;
+        /* 10mm = 1cm sur les 4 côtés */
       }
       html, body {
         margin: 0 !important;
@@ -49,14 +50,17 @@
         background: #fff !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
+        width: 190mm;
+        height: 277mm;
       }
       .actions { display: none !important; }
 
-      /* Le cadre occupe exactement la zone imprimable : A4 - 2x10mm = 277mm x 190mm */
+      /* Cadre = zone imprimable exacte : 190mm x 277mm */
       .page {
         width: 190mm !important;
         height: 277mm !important;
-        margin: 0 auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
         border: 2.5px solid #111 !important;
         display: flex !important;
         flex-direction: column !important;
@@ -65,22 +69,26 @@
       }
 
       .header-top, .header-sub, td.row-label { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      .header-top { font-size: 13px !important; padding: 8px !important; }
-      .header-sub { font-size: 11px !important; padding: 5px !important; }
-      .slogan { font-size: 18px !important; padding: 8px 10px !important; font-weight: 900; }
-      .bonjour { padding: 5px 14px; font-size: 13px; }
-      .names-section { padding: 5px 14px; gap: 3px; }
-      .name-row label { font-size: 11px; }
-      .name-row input { font-size: 11px; }
-      .section-title { padding: 4px 12px; font-size: 11px; }
-      .section-info { padding: 2px 12px; font-size: 10px; }
+      .header-top { font-size: 12px !important; padding: 6px 10px !important; }
+      .header-sub { font-size: 10px !important; padding: 4px !important; }
+      .header-row { padding: 5px 12px !important; }
+      #date-display { font-size: 12px !important; }
+      .logo { font-size: 16px !important; }
+      .slogan { font-size: 16px !important; padding: 5px 10px !important; font-weight: 900; }
+      .bonjour { padding: 4px 12px !important; font-size: 12px !important; }
+      .names-section { padding: 4px 12px !important; gap: 2px !important; }
+      .name-row label { font-size: 10px !important; }
+      .name-row input { font-size: 10px !important; }
+      .section-title { padding: 3px 10px !important; font-size: 10px !important; }
+      .section-info { padding: 2px 10px !important; font-size: 9px !important; }
 
-      .form-table { flex: 1; width: 100%; border-collapse: collapse; table-layout: fixed; display: flex; flex-direction: column; }
-      .form-table tbody { flex: 1; display: flex; flex-direction: column; }
-      .form-table tr { flex: 1; display: flex; align-items: stretch; }
-      td.row-label { font-size: 11px; padding: 3px 6px; width: 110px; min-width: 110px; border: 1px solid #bbb; display: flex; align-items: center; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      td.row-cell { flex: 1; padding: 0; border: 1px solid #bbb; display: flex; }
-      textarea.cell { flex: 1; background: #fff !important; min-height: 0 !important; height: 100% !important; width: 100% !important; resize: none !important; font-size: 11px; border: none; padding: 3px 6px; display: block; }
+      /* Cases réduites — tableau prend l'espace restant */
+      .form-table { flex: 1 !important; width: 100% !important; border-collapse: collapse !important; table-layout: fixed !important; display: flex !important; flex-direction: column !important; }
+      .form-table tbody { flex: 1 !important; display: flex !important; flex-direction: column !important; }
+      .form-table tr { flex: 1 !important; display: flex !important; align-items: stretch !important; }
+      td.row-label { font-size: 10px !important; padding: 2px 5px !important; width: 100px !important; min-width: 100px !important; border: 1px solid #bbb !important; display: flex !important; align-items: center !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      td.row-cell { flex: 1 !important; padding: 0 !important; border: 1px solid #bbb !important; display: flex !important; }
+      textarea.cell { flex: 1 !important; background: #fff !important; min-height: 0 !important; height: 100% !important; width: 100% !important; resize: none !important; font-size: 10px !important; border: none !important; padding: 2px 5px !important; display: block !important; }
       textarea.cell::placeholder { color: transparent !important; }
       input::placeholder { color: transparent !important; }
     }
