@@ -20,6 +20,8 @@
       margin: 0 auto;
       background: #fff;
       border: 2px solid #222;
+      display: flex;
+      flex-direction: column;
     }
 
     /* EN-TETE */
@@ -123,6 +125,7 @@
       width: 100%;
       border-collapse: collapse;
       table-layout: fixed;
+      height: 100%;
     }
     table.form-table td { border: 1px solid #bbb; vertical-align: top; }
     td.row-label {
@@ -136,7 +139,7 @@
     td.row-cell { padding: 2px; }
     textarea.cell {
       width: 100%;
-      min-height: 58px;
+      min-height: 80px;
       border: none;
       resize: vertical;
       font-size: 17px;
