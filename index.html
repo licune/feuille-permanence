@@ -127,7 +127,7 @@
       table-layout: fixed;
       height: 100%;
     }
-    table.form-table td { border: 1px solid #bbb; vertical-align: top; }
+    table.form-table td { border: none; vertical-align: top; }
     td.row-label {
       font-size: 12px;
       font-weight: 700;
@@ -136,12 +136,26 @@
       background: #f7f7f7;
       color: #111;
     }
+    .labels-col {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .labels-col .label-item {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 6px 8px;
+    }
     td.row-cell { padding: 2px; }
     textarea.cell {
+      display: block;
       width: 100%;
-      min-height: 80px;
+      min-height: 400px;
+      height: 400px;
       border: none;
-      resize: vertical;
+      resize: none;
+      overflow: hidden;
       font-size: 17px;
       font-family: 'Segoe UI', Arial, sans-serif;
       padding: 6px 8px;
@@ -269,26 +283,28 @@
         width: 120px !important;
         min-width: 120px !important;
         max-width: 120px !important;
-        border-right: 1px solid #bbb !important;
+        border-right: none !important;
         display: flex !important;
         align-items: center !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
       }
+      .labels-col .label-item { font-size: 14px !important; padding: 2px 6px !important; }
       td.row-cell {
         flex: 1 !important;
         padding: 0 !important;
-        border-right: 1px solid #bbb !important;
+        border-right: none !important;
         display: flex !important;
         min-width: 0 !important;
       }
-      td.row-cell:last-child { border-right: none !important; }
       textarea.cell {
         flex: 1 !important;
         background: #fff !important;
         min-height: 0 !important;
+        height: auto !important;
         width: 100% !important;
         resize: none !important;
+        overflow: hidden !important;
         font-size: 20px !important;
         border: none !important;
         padding: 2px 6px !important;
@@ -335,39 +351,18 @@
   <table class="form-table">
     <tbody>
       <tr>
-        <td class="row-label">Évènements</td>
-        <td class="row-cell"><textarea class="cell" id="f_evenements" placeholder="Saisir ici..."></textarea></td>
-        <td class="row-cell"><textarea class="cell" id="f_evenements2" placeholder="Saisir ici..."></textarea></td>
-      </tr>
-      <tr>
-        <td class="row-label">Magasin</td>
-        <td class="row-cell"><textarea class="cell" id="f_magasin" placeholder="Saisir ici..."></textarea></td>
-        <td class="row-cell"><textarea class="cell" id="f_magasin2" placeholder="Saisir ici..."></textarea></td>
-      </tr>
-      <tr>
-        <td class="row-label">Caisse</td>
-        <td class="row-cell"><textarea class="cell" id="f_caisse" placeholder="Saisir ici..."></textarea></td>
-        <td class="row-cell"><textarea class="cell" id="f_caisse2" placeholder="Saisir ici..."></textarea></td>
-      </tr>
-      <tr>
-        <td class="row-label">PGC</td>
-        <td class="row-cell"><textarea class="cell" id="f_pgc" placeholder="Saisir ici..."></textarea></td>
-        <td class="row-cell"><textarea class="cell" id="f_pgc2" placeholder="Saisir ici..."></textarea></td>
-      </tr>
-      <tr>
-        <td class="row-label">PF</td>
-        <td class="row-cell"><textarea class="cell" id="f_pf" placeholder="Saisir ici..."></textarea></td>
-        <td class="row-cell"><textarea class="cell" id="f_pf2" placeholder="Saisir ici..."></textarea></td>
-      </tr>
-      <tr>
-        <td class="row-label">Non-Alimentaire</td>
-        <td class="row-cell"><textarea class="cell" id="f_na" placeholder="Saisir ici..."></textarea></td>
-        <td class="row-cell"><textarea class="cell" id="f_na2" placeholder="Saisir ici..."></textarea></td>
-      </tr>
-      <tr>
-        <td class="row-label">Autres</td>
-        <td class="row-cell"><textarea class="cell" id="f_autres" placeholder="Saisir ici..."></textarea></td>
-        <td class="row-cell"><textarea class="cell" id="f_autres2" placeholder="Saisir ici..."></textarea></td>
+        <td class="row-label" style="padding:0;">
+          <div class="labels-col">
+            <div class="label-item">Évènements</div>
+            <div class="label-item">Magasin</div>
+            <div class="label-item">Caisse</div>
+            <div class="label-item">PGC</div>
+            <div class="label-item">PF</div>
+            <div class="label-item">Non-Alimentaire</div>
+            <div class="label-item">Autres</div>
+          </div>
+        </td>
+        <td class="row-cell"><textarea class="cell" id="f_notes" placeholder="Saisir ici..."></textarea></td>
       </tr>
     </tbody>
   </table>
@@ -388,13 +383,7 @@
   const DATA_KEY  = 'perm_data';
   const FIELDS = [
     'nom_ed','nom_na','nom_ali',
-    'f_evenements','f_evenements2',
-    'f_magasin','f_magasin2',
-    'f_caisse','f_caisse2',
-    'f_pgc','f_pgc2',
-    'f_pf','f_pf2',
-    'f_na','f_na2',
-    'f_autres','f_autres2'
+    'f_notes'
   ];
 
   function todayStr() { return new Date().toISOString().slice(0,10); }
@@ -463,6 +452,16 @@
     if (el) el.addEventListener('input', () => { clearTimeout(saveTimer); saveTimer = setTimeout(saveData, 800); });
   });
 
+  function autoGrow(el) {
+    el.style.height = 'auto';
+    el.style.height = Math.max(el.scrollHeight, 400) + 'px';
+  }
+  const notesEl = document.getElementById('f_notes');
+  if (notesEl) {
+    notesEl.addEventListener('input', () => autoGrow(notesEl));
+    window.addEventListener('load', () => autoGrow(notesEl));
+  }
+
   function scheduleNightReset() {
     const now = new Date(), r = new Date();
     r.setHours(23,59,0,0);
@@ -477,6 +476,7 @@
   displayDate();
   checkReset();
   loadData();
+  if (notesEl) autoGrow(notesEl);
   scheduleNightReset();
 </script>
 </body>
