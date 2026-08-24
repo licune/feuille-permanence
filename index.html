@@ -9,9 +9,9 @@
 
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
-      background: #f4f4f4;
+      background: linear-gradient(160deg, #eef2f7 0%, #e4e9f0 100%);
       min-height: 100vh;
-      padding: 16px;
+      padding: 24px 16px;
       color: #111;
     }
 
@@ -20,8 +20,17 @@
       margin: 0 auto;
       background: #fff;
       border: 2px solid #222;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
       display: flex;
       flex-direction: column;
+      animation: pageIn 0.45s ease-out;
+    }
+
+    @keyframes pageIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     /* EN-TETE */
@@ -84,16 +93,19 @@
       flex: 1;
       min-width: 160px;
       border: none;
-      border-bottom: 1.5px solid #888;
-      padding: 3px 6px;
+      border-bottom: 1.5px solid #ccc;
+      padding: 5px 8px;
       font-size: 20px;
       font-weight: 700;
       text-transform: uppercase;
       outline: none;
       background: transparent;
       color: #111;
+      border-radius: 4px 4px 0 0;
+      transition: background 0.2s, border-color 0.2s;
     }
-    .name-row input:focus { border-bottom: 2px solid #005BBB; }
+    .name-row input:hover { background: #fafbfd; }
+    .name-row input:focus { border-bottom: 2px solid #005BBB; background: #f3f8ff; }
 
     /* SLOGAN */
     .slogan {
@@ -145,8 +157,10 @@
       flex: 1;
       display: flex;
       align-items: center;
+      gap: 6px;
       padding: 6px 8px;
     }
+    .labels-col .label-item:nth-child(even) { background: #f0f2f5; }
     td.row-cell { padding: 2px; }
     textarea.cell {
       display: block;
@@ -157,13 +171,16 @@
       resize: none;
       overflow: hidden;
       font-size: 17px;
+      line-height: 1.6;
       font-family: 'Segoe UI', Arial, sans-serif;
-      padding: 6px 8px;
+      padding: 10px 12px;
       outline: none;
       background: #fff;
       color: #111;
+      transition: background 0.2s;
     }
-    textarea.cell:focus { background: #eef5ff; }
+    textarea.cell::placeholder { color: #aaa; font-style: italic; }
+    textarea.cell:focus { background: #fafcff; }
 
     /* BOUTONS */
     .actions {
@@ -182,12 +199,13 @@
       font-weight: 600;
       cursor: pointer;
       border: 2px solid #222;
-      border-radius: 4px;
+      border-radius: 6px;
       background: #fff;
       color: #111;
-      transition: background 0.15s;
+      transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
     }
-    .btn:hover { background: #f0f0f0; }
+    .btn:active { transform: scale(0.97); }
+    .btn:hover { background: #f0f0f0; box-shadow: 0 2px 6px rgba(0,0,0,0.12); }
     .btn-primary { background: #005BBB; color: #fff; border-color: #005BBB; }
     .btn-primary:hover { background: #004a99; }
     .save-indicator { font-size: 11px; color: #2a8a2a; font-weight: 600; opacity: 0; transition: opacity 0.4s; }
@@ -353,13 +371,13 @@
       <tr>
         <td class="row-label" style="padding:0;">
           <div class="labels-col">
-            <div class="label-item">Évènements</div>
-            <div class="label-item">Magasin</div>
-            <div class="label-item">Caisse</div>
-            <div class="label-item">PGC</div>
-            <div class="label-item">PF</div>
-            <div class="label-item">Non-Alimentaire</div>
-            <div class="label-item">Autres</div>
+            <div class="label-item">📢 Évènements</div>
+            <div class="label-item">🏬 Magasin</div>
+            <div class="label-item">💳 Caisse</div>
+            <div class="label-item">📦 PGC</div>
+            <div class="label-item">🐟 PF</div>
+            <div class="label-item">🛍️ Non-Alimentaire</div>
+            <div class="label-item">📝 Autres</div>
           </div>
         </td>
         <td class="row-cell"><textarea class="cell" id="f_notes" placeholder="Saisir ici..."></textarea></td>
@@ -478,6 +496,13 @@
   loadData();
   if (notesEl) autoGrow(notesEl);
   scheduleNightReset();
+
+  window.addEventListener('load', () => {
+    const firstEmpty = ['nom_ed','nom_na','nom_ali']
+      .map(id => document.getElementById(id))
+      .find(el => el && !el.value);
+    if (firstEmpty) firstEmpty.focus();
+  });
 </script>
 </body>
 </html>
